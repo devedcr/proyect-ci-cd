@@ -1,0 +1,19 @@
+{
+    "name": "eduardo/notes-app",
+    "description": "Proyect Note App Basic",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "eduardo",
+            "email": "jorge.ecrg@gmail.com"
+        }
+    ],
+    "require": {
+        "bramus/router": "~1.6"
+    }
+}

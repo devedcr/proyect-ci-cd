@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13.13-alpine
+    container_name: db_note
+    volumes:
+      - db_notes:/var/lib/postgresql/data
+    networks:
+      - net_notes
+    environment:
+      - POSTGRES_DB=db_notes
+      - POSTGRES_PASSWORD=edcr
+    ports:
+      - 5432:5432 
+volumes:
+  db_notes:
+networks:
+  net_notes:

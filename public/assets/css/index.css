@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Kavoon&display=swap');
+
+:root{
+    --bg: #f5f5f5;
+    --content-box:#ffffff;
+    --table-row:#eeeeee;
+    --litepicker-is-end-color-bg:#37b384;
+    --litepicker-day-color-hover:#37b384;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex: 1;
+    min-height: calc(100vh-24px);
+}
+
+.table_content{
+    background-color: var(--content-box);
+}
+
+footer{
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.table_row:nth-child(2n+1) {
+    background-color: var(--table-row);
+}
+
+.text-kavoon {
+    font-family: "Kavoon", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+/*icons*/
+.btn__save{
+    background-color: #37b384;
+    color: var(--bg);
+}
+
+.btn__add{
+    background-color: #37b384;
+    color: var(--bg);
+}
+
+.btn__trash{
+    background-color: #ff5b5b;
+    color: var(--bg);
+}
+
+.btn__edit{
+    background-color: #37b384;
+    color: var(--bg);
+}
+
+.icon__empty{
+    font-size: 40px;
+}
+
+#modal{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(113, 119, 117,0.3);
+}
+
+#modal__content{
+    min-width: 300px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--content-box);
+    box-shadow: 1px 1px 5px -2px black;
+}
+
+input[type="text"]{
+    border-style: none;
+    outline: none;
+    box-shadow: 0px 2px 4px -4px black;
+}
+input[type="text"]:hover{
+    border-style: none;
+    outline: none;
+}
