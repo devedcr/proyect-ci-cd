@@ -1,10 +1,16 @@
 import $ from "../../lib/jquery/jquery.js";
 import { initDate } from "../lite_picker/lite_picker.js";
-import { functionCreateNote, functionLoadNote } from "./main_function.js";
+import { getParentElement } from "../util/util.js";
+import { functionCreateNote, functionLoadNote, functionRemoveNote } from "./main_function.js";
 
 $(document).ready(function () {
     initDate("#date_end");
     functionLoadNote();
+});
+
+$(document).on("click", ".btn_remove", function (e) {
+    let tr = getParentElement(e.target,"TR");
+    functionRemoveNote(tr.getAttribute("id"));
 });
 
 $(document).on("click", "#btn_create", function (e) {

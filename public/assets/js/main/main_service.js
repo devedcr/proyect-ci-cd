@@ -6,3 +6,13 @@ let notes = [
 export function serviceLoadNote() {
     return notes;
 }
+
+export function serviceCreateNote(note) {
+    note.id = notes.length + 1;
+    notes.push(note);
+    return note;
+}
+
+export function serviceRemoveNote(noteId) {
+    notes = notes.filter((note) => note.id != noteId);
+}
