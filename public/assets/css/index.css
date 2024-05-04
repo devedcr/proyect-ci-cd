@@ -44,7 +44,7 @@ footer{
 }
   
 /*icons*/
-.btn__save{
+.btn__form{
     background-color: #37b384;
     color: var(--bg);
 }
@@ -68,7 +68,7 @@ footer{
     font-size: 40px;
 }
 
-#modal{
+.modal{
     position: absolute;
     display: none;
     justify-content: center;
