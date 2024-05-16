@@ -14,7 +14,8 @@ $(document).ready(function () {
 
 $(document).on("click", ".btn_remove", function (e) {
     let tr = getParentElement(e.target, "TR");
-    functionRemoveNote(tr.getAttribute("id"));
+    let noteId = tr.getAttribute("id").split("_")[1];
+    functionRemoveNote(noteId);
 });
 
 $(document).on("click", ".btn_edit", function (e) {
@@ -46,10 +47,10 @@ $(document).on("submit", "#modal__form__create", function (e) {
     e.target.reset();
 });
 
-$(document).on("submit", "#modal__form__edit", function (e) {
+$(document).on("submit", "#modal__form__edit", async function (e) {
     e.preventDefault();
     let noteInput = Object.fromEntries(new FormData(e.target));
-    let noteUpdate = functionUpdateNote(noteInput);
+    let noteUpdate = await functionUpdateNote(noteInput);
     $(`#note_name_${noteInput.id}`).text(noteUpdate.name);;
     $(`#note_date_created_${noteInput.id}`).text(noteUpdate.date_created);
     $(`#note_date_end_${noteInput.id}`).text(noteUpdate.date_end);

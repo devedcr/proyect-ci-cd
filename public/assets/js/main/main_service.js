@@ -1,26 +1,60 @@
-let notes = [
-    { id: 1, name: "Merry cristman", date_created: "17/03/2023", date_end: "27/03/2023" },
-    { id: 2, name: "Happy Edward", date_created: "02/04/2024", date_end: "03/04/2024" },
-];
+import { api } from "../../../constant/api.js";
 
-export function serviceLoadNote() {
-    return notes;
+let notes = [];
+
+export async function serviceLoadNote() {
+    try {
+        let response = await fetch(`${api.url}/note/list`).then((res) => res.json());
+        notes = response.data;
+        return notes;
+    } catch (error) {
+        return [];
+    }
 }
 
-export function serviceCreateNote(note) {
-    note.id = notes.length + 1;
-    notes.push(note);
-    return note;
+export async function serviceCreateNote(note) {
+    try {
+        let response = await fetch(`${api.url}/note/save`,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(note)
+        }).then((res) => res.json());
+        notes = response.data;
+        return notes;
+    } catch (error) {
+        return notes;
+    }
 }
-export function serviceUpdateNote(note) {
+export async function serviceUpdateNote(note) {
     let noteUpdate = notes.find((n) => n.id == note.id);
     noteUpdate.name = note.name;
     noteUpdate.date_end = note.date_end;
-    return noteUpdate;
+    try {
+        await fetch(`${api.url}/note/update/${note.id}`,{
+            method:"PUT",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(noteUpdate)
+        }).then((res) => res.json());
+        return noteUpdate;
+    } catch (error) {
+        return null;
+    }
 }
 
-export function serviceRemoveNote(noteId) {
-    notes = notes.filter((note) => note.id != noteId);
+export async function serviceRemoveNote(noteId) {
+    try {
+        await fetch(`${api.url}/note/remove/${noteId}`,{
+            method:"DELETE",
+        }).then((res) => res.json());
+        notes = notes.filter((note) => note.id != noteId);
+        return notes;
+    } catch (error) {
+        return notes;
+    }
 }
 
 export function serviceSearchNote(noteId) {
