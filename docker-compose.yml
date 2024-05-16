@@ -4,12 +4,14 @@ services:
     image: postgres:13.13-alpine
     container_name: db_note
     volumes:
-      - db_notes:/var/lib/postgresql/data
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     networks:
       - net_notes
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_DB=db_notes
       - POSTGRES_PASSWORD=edcr
+      - DATABASE_HOST=127.0.0.1
     ports:
       - 5432:5432 
 volumes:
