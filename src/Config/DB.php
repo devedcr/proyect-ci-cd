@@ -23,7 +23,7 @@ class DB
     public function getConnection(): PDO | null
     {
         try {
-            $db = new PDO("pgsql:host=$this->host;port=$this->port;dbname=$this->database", $this->user, $this->pass,[
+            $db = new PDO("pgsql:host={$this->host};port={$this->port};dbname={$this->database}", $this->user, $this->pass,[
                 PDO::ATTR_EMULATE_PREPARES => false,  
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_PERSISTENT => true

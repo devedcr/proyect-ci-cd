@@ -1,17 +1,33 @@
 version: '3.8'
 services:
+  apache:
+    build: .
+    container_name: apache_server
+    networks:
+      - net_notes
+    ports:
+      - 80:80
+    environment:
+      - API_URL=http://127.0.0.1
+      - DB_HOST=db
+      - DB_DATABASE=db_notes
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=edcr
+    depends_on:
+      - db  
   db:
     image: postgres:13.13-alpine
     container_name: db_note
     volumes:
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - db_notes:/var/lib/postgresql/data
     networks:
       - net_notes
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=db_notes
       - POSTGRES_PASSWORD=edcr
-      - DATABASE_HOST=127.0.0.1
     ports:
       - 5432:5432 
 volumes:

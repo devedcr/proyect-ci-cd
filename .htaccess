@@ -1,0 +1,6 @@
+RewriteEngine on
+DirectoryIndex main.php index.php
+# Si el recurso solicitado no existe, redirige a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
